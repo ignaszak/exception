@@ -1,0 +1,56 @@
+<?php $i=0; foreach ($errorArray as $value): ++$i; ?>
+
+    <div class="panel panel-default exception-content" id="ignaszak-exception-content-<?php echo $i; ?>">
+        <div class="panel-body">
+            
+
+            <div class="well break-all">
+                <h1><?php echo $value['type']; ?></h1>
+                <br>
+                <?php echo $value['message']; ?> in 
+                <b><?php echo $value['file']; ?></b> on line
+                <b><?php echo $value['line']; ?></b>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading break-all">
+                    <?php echo $value['file']; ?>
+                </div>
+                <div class="panel-body file-content">
+                    <?php echo $value['content']; ?>
+                </div>
+            </div>
+
+            <?php if (!empty($value['trace'])): ?>
+
+            <div class="panel-group trace" id="accordion" role="tablist" aria-multiselectable="true">
+                <h3>Backtrace</h3>
+
+                <?php $p=0; foreach ($value['trace'] as $trace): ++$p; ?>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading break-all trace-message" role="tab" id="heading<?php echo $i.'-'.$p; ?>">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i.'-'.$p; ?>" aria-expanded="false" aria-controls="collapse<?php echo $i.'-'.$p; ?>">
+                                <?php echo $trace['message']; ?>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse<?php echo $i.'-'.$p; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $i.'-'.$p; ?>">
+                        <div class="panel-body file-content">
+                            <p><?php echo $trace['file']; ?></p>
+                            <?php echo $trace['content']; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <?php endforeach; ?>
+
+            </div>
+
+            <?php endif; ?>
+
+        </div>
+    </div>
+
+<?php endforeach; ?>

@@ -1,0 +1,69 @@
+<p>
+    <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target=".bs-logFile-modal-lg">
+        Log files
+    </button>
+</p>
+
+<div class="modal fade bs-logFile-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding:0px; margin: 0px;">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <h4 class="modal-title" id="myModalLabel">
+                    <button type="button" id="logListBack" class="btn btn-primary btn-sm"><< Back</button>
+                        &nbsp;&nbsp;&nbsp;Log Files
+                </h4>
+            </div>
+
+            <div class="modal-scroll">
+
+                <table id="logFileList" class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>File name</th>
+                            <th class="hidden-xs">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php
+                    $i=0;
+                    foreach ($logFileArray as $value):
+                        ++$i;
+                        $filemtime = date("F d Y H:i:s", $value['filemtime']); 
+                    ?>
+
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td>
+                                <a href="javascript:void(0);" id="<?php echo str_replace('.','',$value['fileName']); ?>">
+                                    <?php echo $value['fileName']; ?>
+                                </a>
+                                <p class="visible-xs"><?php echo $filemtime; ?></p>
+                            </td>
+                            <td class="hidden-xs"><?php echo $filemtime; ?></td>
+                        </tr>
+   
+                    <?php endforeach; ?>
+   
+                    </tbody>
+                </table>
+
+                <?php $i=0; foreach ($logFileArray as $value): ++$i; ?>
+
+                <div class="logFileContent <?php echo str_replace('.','',$value['fileName']); ?>">
+                    <pre class="pre-none"><?php echo str_replace("\n","<br>",str_replace(" ","&nbsp;",$value['fileContent'])); ?></pre>
+                </div>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        </div>
+    </div>
+</div>

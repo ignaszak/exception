@@ -1,0 +1,15 @@
+<div class="error-list">
+    <ul class="nav nav-list">
+
+    <?php $i=0; foreach ($errorArray as $value): ?>
+
+        <li data-toggle="tooltip" data-placement="right" title="<?php echo $value['message']; ?>">
+            <a href="javascript:void(0);" class="ignaszak-exception-menu" id="<?php echo ++$i; ?>">
+                <?php echo $i . " " . $value['type']; ?>
+            </a>
+        </li>
+
+    <?php endforeach; ?>
+
+    </ul>
+</div>
