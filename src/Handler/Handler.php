@@ -86,8 +86,9 @@ abstract class Handler
      * @param array $args
      * @return string
      */
-    private function getFunctionArgs($args)
+    private function getFunctionArgs(array $args = null)
     {
+        if (is_null($args)) $args = array();
         $array = array();
 
         foreach ($args as $value) {
