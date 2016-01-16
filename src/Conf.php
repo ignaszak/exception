@@ -33,7 +33,7 @@ class Conf
      * 
      * @var integer
      */
-    private $errorReporting;
+    private $errorReporting = null;
 
     /**
      * Stores display mode if error occured:
@@ -44,42 +44,42 @@ class Conf
      * 
      * @var string (dev|user|location|null)
      */
-    private $display;
+    private $display = '';
 
     /**
      * Stores error level displayed in 'user' or 'location' mode
      * 
      * @var integer
      */
-    private $userReporting;
+    private $userReporting = null;
 
     /**
      * Stores message for 'user' mode
      * 
      * @var string
      */
-    private $userMessage;
+    private $userMessage = '';
 
     /**
      * Stores location adress for 'location' mode
      * 
      * @var string
      */
-    private $userLocation;
+    private $userLocation = '';
 
     /**
      * Create log file if error occured
      * 
      * @var boolean
      */
-    private $createLogFile;
+    private $createLogFile = false;
 
     /**
      * Log files dir
      * 
      * @var string
      */
-    private $logFileDir;
+    private $logFileDir = '';
 
     /**
      * @return \Ignaszak\Exception\Conf
@@ -96,7 +96,7 @@ class Conf
      * @param string $property
      * @param string $value
      */
-    public function setProperty($property, $value)
+    public function setProperty(string $property, $value)
     {
         if (property_exists($this, $property))
             $this->$property = $value;
@@ -104,12 +104,12 @@ class Conf
 
     /**
      * @param string $property
-     * @return string
+     * @return mixed
      */
-    public static function get($property)
+    public static function get(string $property)
     {
-        if (property_exists(self::$_conf, $property))
-            return self::$_conf->$property;
+        return property_exists(self::$_conf, $property) ?
+            self::$_conf->$property : null;
     }
 
 }

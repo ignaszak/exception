@@ -52,17 +52,19 @@ class ErrorHandler extends Handler
 
             $lastError = error_get_last();
 
-            parent::$_controller->catchErrorAndHandle(array(
-                $this->getErrorTypeByNumber($lastError['type']),
-                $lastError['message'],
-                $lastError['file'],
-                $lastError['line'],
-                parent::$_fileContent->getFileContent($lastError['file'], $lastError['line']),
-                $this->getTrace()
-            ));
+            if (count($lastError)) { // If not empty
+                parent::$_controller->catchErrorAndHandle(array(
+                    $this->getErrorTypeByNumber($lastError['type']),
+                    $lastError['message'],
+                    $lastError['file'],
+                    $lastError['line'],
+                    parent::$_fileContent->getFileContent($lastError['file'], $lastError['line']),
+                    $this->getTrace()
+                ));
 
-            parent::$_controller->addReportedErrorCode($lastError['type']);
-            parent::$_controller->__destruct();
+                parent::$_controller->addReportedErrorCode($lastError['type']);
+                parent::$_controller->__destruct();
+            }
 
         });
     }
@@ -71,9 +73,9 @@ class ErrorHandler extends Handler
      * If error is not suppressed returns error type
      * 
      * @param integer $errorNumber
-     * @return (string|null)
+     * @return string
      */
-    private function getErrorTypeByNumber($errorNumber)
+    private function getErrorTypeByNumber(int $errorNumber): string
     {
         $errorNumber = $errorNumber & error_reporting();
 
@@ -98,7 +100,7 @@ class ErrorHandler extends Handler
                 default:                  return "Unknown error ($errorNumber)"; break;
             }
         }
-        return null;
+        return '';
     }
 
 }

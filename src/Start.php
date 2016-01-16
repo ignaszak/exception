@@ -56,7 +56,7 @@ class Start
      * @param string $property
      * @param string $value
      */
-    public function __set($property, $value) {
+    public function __set(string $property, $value) {
         $this->_conf->setProperty($property, $value);
     }
 

@@ -56,7 +56,7 @@ class LogFile
      * 
      * @return array
      */
-    private function loadLogDisplay()
+    private function loadLogDisplay(): array
     {
         $array = array();
         $count = 1;

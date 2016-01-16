@@ -48,7 +48,7 @@ abstract class Handler
      * Returns backtrace for errors and exceptions as an array
      * 
      * @param object $e
-     * @return (array|null)
+     * @return array
      */
     protected function getTrace($e = null)
     {
@@ -61,9 +61,10 @@ abstract class Handler
         }
 
         $array = array();
-        $count = 0;
+        $count = count($backtrace);
+        $j = 0;
 
-        for ($i=$forBegin; $i<count($backtrace); ++$i) {
+        for ($i = $forBegin; $i < $count; ++$i) {
             $file = $this->getBacktraceFromKey($backtrace[$i], 'file');
             $line = $this->getBacktraceFromKey($backtrace[$i], 'line');
             $function = $this->getBacktraceFromKey($backtrace[$i], 'function');
@@ -71,14 +72,17 @@ abstract class Handler
             $type = $this->getBacktraceFromKey($backtrace[$i], 'type');
             $args = $this->getFunctionArgs($this->getBacktraceFromKey($backtrace[$i], 'args'));
 
-            $array[$count]['message']  = "#$count $class$type$function(<span style=\"color:grey;\">$args</span>)";
-            $array[$count]['file']     = "$file($line)";
-            $array[$count]['content']  = self::$_fileContent->getFileContent($file, $line, 3);
-
-            ++$count;
+            if ($file != '' && $line != '') {
+                $array[$j]['message']  = "#{$count} {$class}{$type}{$function}
+                    (<span style=\"color:grey;\">{$args}</span>)";
+                $array[$j]['file']     = "{$file}({$line})";
+                $array[$j]['content']  = self::$_fileContent->getFileContent(
+                    $file, $line, 3);
+                ++$j;
+            }
         }
 
-        return ($count ? $array : null);
+        return $array;
     }
 
     /**
@@ -87,7 +91,7 @@ abstract class Handler
      * @param array $args
      * @return string
      */
-    private function getFunctionArgs(array $args = null)
+    private function getFunctionArgs(array $args = null): string
     {
         if (is_null($args)) $args = array();
         $array = array();
@@ -106,18 +110,18 @@ abstract class Handler
      * 
      * @param array $backtrace
      * @param string $key
-     * @return (string|array|null)
+     * @return (string|array)
      */
-    private function getBacktraceFromKey($backtrace, $key)
+    private function getBacktraceFromKey(array $backtrace, string $key)
     {
-        return array_key_exists($key, $backtrace) ? $backtrace[$key] : null;
+        return array_key_exists($key, $backtrace) ? $backtrace[$key] : '';
     }
 
     /**
      * @param string $string
      * @return string
      */
-    private function cutString($string)
+    private function cutString(string $string): string
     {
         $length = 40;
         return substr($string, 0, $length) . (strlen($string) > $length ? "..." : "");

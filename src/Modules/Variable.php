@@ -25,7 +25,7 @@ class Variable
      * 
      * @return string
      */
-    public static function getFormatedServerDataAsString()
+    public static function getFormatedServerDataAsString(): string
     {
         $array = array();
 
@@ -55,7 +55,7 @@ class Variable
      * @param mixed $value
      * @param string $stringQuotation
      */
-    public static function formatVariableType($value, $stringQuotation = '')
+    public static function formatVariableType($value, string $stringQuotation = ''): string
     {
         $valueType = gettype($value);
 
@@ -64,7 +64,7 @@ class Variable
             case "integer":
             case "double":
             case "NULL":
-                return $value;
+                return "{$value}";
                 break;
             case "string":
                 return $stringQuotation . $value . $stringQuotation;
@@ -92,7 +92,7 @@ class Variable
      * @param string $key
      * @return string
      */
-    private static function formatServerDataValue($value, $key)
+    private static function formatServerDataValue(string $value, string $key): string
     {
         $value = str_replace("\n", "", $value);
         $value = strip_tags($value);
@@ -106,7 +106,7 @@ class Variable
     /**
      * @return array
      */
-    private static function getServerData()
+    private static function getServerData(): array
     {
         return array(
             '$_SERVER'  => $_SERVER,

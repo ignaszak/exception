@@ -28,6 +28,7 @@ class ExceptionHandler extends Handler
     public function setExceptionHandler()
     {
         set_exception_handler(function($e) {
+
             parent::$_controller->catchErrorAndHandle(array(
                 'Uncaught exception: ' . get_class($e), // Exception name as error type
                 $e->getMessage(),
@@ -49,7 +50,7 @@ class ExceptionHandler extends Handler
      * @param object $e
      * @param integer $type
      */
-    public function catchException($e, $type = E_ERROR)
+    public function catchException($e, int $type = E_ERROR)
     {
         if ($this->isRightErrorType($type) && ini_get('error_reporting') & $type) {
             parent::$_controller->catchErrorAndHandle(array(
@@ -73,7 +74,7 @@ class ExceptionHandler extends Handler
      * @param integer $type
      * @return boolean
      */
-    private function isRightErrorType($type)
+    private function isRightErrorType(int $type): bool
     {
         $errorTypeArray = array(
             E_ERROR,

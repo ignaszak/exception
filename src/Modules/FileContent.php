@@ -56,16 +56,22 @@ class FileContent
      * @param integer $offset
      * @return string
      */
-    public function getFileContent($file, $line, $offset = 10)
+    public function getFileContent(string $file, int $line, int $offset = 10): string
     {
         if (file_exists($file) && is_readable($file) && $line > 0) {
             $this->setArgs($file, $line, $offset);
             $this->loadFileToArray();
             return $this->displayContent();
         }
+        return '';
     }
 
-    private function setArgs($file, $line, $offset = null)
+    /**
+     * @param string $file
+     * @param int $line
+     * @param int $offset
+     */
+    private function setArgs(string $file, int $line, int $offset = null)
     {
         $this->file = $file;
         $this->line = $line;
@@ -83,7 +89,7 @@ class FileContent
      * 
      * @return string
      */
-    private function displayContent()
+    private function displayContent(): string
     {
         $fragment = $this->getFileFragment();
         $firstLine = $this->line - $this->fileFragmentOffset;
@@ -99,7 +105,7 @@ class FileContent
      * 
      * @return string
      */
-    private function getFileFragment()
+    private function getFileFragment(): string
     {
         $start = ($this->line - ($this->fileFragmentOffset + 1));
         $start = ($start < 0 ? 0 : $start);

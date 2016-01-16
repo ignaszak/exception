@@ -69,7 +69,7 @@ class Controller extends IController
     /**
      * @return Controller
      */
-    public static function instance()
+    public static function instance(): Controller
     {
         if (empty(self::$_controller))
             self::$_controller = new Controller;
@@ -125,7 +125,7 @@ class Controller extends IController
      * 
      * @return boolean
      */
-    private function isUserReporting()
+    private function isUserReporting(): bool
     {
         if (self::$reportedErrorCode & Conf::get('userReporting')) {
             return true;
@@ -141,7 +141,7 @@ class Controller extends IController
      * @param array $error
      * @return boolean
      */
-    private function isErrorNotSuppressed(array $error)
+    private function isErrorNotSuppressed(array $error): bool
     {
         return $error[0];
     }
@@ -152,7 +152,7 @@ class Controller extends IController
      * @param array $array
      * @return array
      */
-    private function renameArrayKeys(array $array)
+    private function renameArrayKeys(array $array): array
     {
         $arrayKeyPattern = array(
             'type',
@@ -179,7 +179,7 @@ class Controller extends IController
      * @param array $array
      * @return boolean
      */
-    private function isArrayNotEmpty(array $array)
+    private function isArrayNotEmpty(array $array): bool
     {
         $i = 0;
         foreach ($array as $value) {
