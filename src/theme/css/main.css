@@ -1,0 +1,100 @@
+    .navbar {
+        margin: 0px;
+    }
+    .content {
+        padding: 5px;
+        border-left: 1px solid #000;
+        overflow-y: scroll;
+    }
+    .container-fluid {
+        margin-top: -1px;
+    }
+
+    .menu-left {
+        overflow: hidden;
+        padding: 5px;
+        white-space: nowrap;
+    }
+    .nav>li>a:hover, .nav>li>a:visited, .nav>li>a:focus {
+        background-color: #3185b9;
+    }
+    .active {
+        background-color: #3185b9;
+    }
+    .error-list {
+        max-height: 250px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .file-content {
+        padding: 0px;
+    }
+    .file-content > p {
+        margin-left: 10px;
+    }
+    .well {
+        word-break: break-all;
+        background-color: #121212;
+    }
+    .well p {
+        font-size: 16px;
+    }
+    .well h1 {
+        color: #3185b9;
+    }
+    .well h2 {
+        padding-left: 19px;
+        font-size: 18px;
+        color: #3185b9;
+    }
+    .well .syntaxhighlighter {
+        margin: 0px;
+    }
+    .well h3 {
+        margin: 0px 0px 15px 0px;
+        color: #3185b9;
+    }
+    .well .backtrace-content {
+        margin-left: 20px;
+    }
+    .well .backtrace-content p {
+        margin-left: 20px;
+        margin-bottom: 0px;
+        color: #3185b9;
+    }
+
+    .pre-none {
+        background-color: #121212;
+        color: #FFFFFF;
+        border: 0px;
+        font-size: 12px;
+        white-space: nowrap;
+        margin: 0px;
+    }
+    .break-all {
+        word-break: break-all;
+    }
+    .panel-default>.trace-message {
+        padding: 1px;
+    }
+    .modal .modal-dialog {
+        width: 90%;
+    }
+    .modal-scroll {
+        overflow: auto;
+    }
+
+    @media only screen and (max-width : 768px) {
+        .content {
+            border-left: 0px;
+            border-top: 1px solid #000;
+            overflow-y: initial;
+        }
+        .modal .modal-dialog {
+            margin: 5px;
+        }
+        .well .backtrace-content {
+            margin-left: 0px;
+        }
+    }

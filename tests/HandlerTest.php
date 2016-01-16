@@ -9,8 +9,8 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        $this->_handler = $this->getMockForAbstractClass('Ignaszak\\Exception\\Handler\\Handler');
-        trigger_error('Test getTrace()');
+        $this->_handler = $this->getMockForAbstractClass('Ignaszak\Exception\Handler\Handler');
+        @trigger_error('Test getTrace()');
     }
 
     public function testGetTrace()

@@ -9,11 +9,11 @@
  * @link      http://phpdoc.org
  */
 
-namespace Ignaszak\Exception\Handler;
+namespace Ignaszak\Exception\Controller;
 
 use Ignaszak\Exception\Conf;
-use Ignaszak\Exception\Handler\Module\Display;
-use Ignaszak\Exception\Handler\Module\LogFile;
+use Ignaszak\Exception\Modules\Display;
+use Ignaszak\Exception\Modules\LogFile;
 
 /**
  * 
@@ -63,7 +63,7 @@ class Controller extends IController
     public function __construct()
     {
         $this->_display = new Display;
-        $this->_logFile = new LogFile($this);
+        $this->_logFile = new LogFile;
     }
 
     /**
@@ -75,22 +75,6 @@ class Controller extends IController
             self::$_controller = new Controller;
 
             return self::$_controller;
-    }
-
-    /**
-     * @return Display
-     */
-    public function getDisplay()
-    {
-        return $this->_display;
-    }
-
-    /**
-     * @return LogFile
-     */
-    public function getLogFile()
-    {
-        return $this->_logFile;
     }
 
     /**
@@ -115,11 +99,9 @@ class Controller extends IController
     public function __destruct()
     {
         if ($this->isArrayNotEmpty(parent::$errorArray) && !self::$count) {
-
             $this->cleanBuffer();
 
             $this->_logFile->createLogFile();
-            $this->_logFile->createLogFileListArray();
             $this->_display->loadDisplay('dev');
 
             if ($this->isUserReporting()) {

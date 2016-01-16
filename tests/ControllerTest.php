@@ -2,7 +2,7 @@
 
 namespace Test;
 
-use Ignaszak\Exception\Handler\Controller;
+use Ignaszak\Exception\Controller\Controller;
 
 class ControllerTest extends \PHPUnit_Framework_TestCase
 {

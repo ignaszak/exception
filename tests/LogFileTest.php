@@ -4,7 +4,7 @@ namespace Test;
 
 use Ignaszak\Exception\Conf;
 use Ignaszak\Exception\Handler\ErrorHandler;
-use Ignaszak\Exception\Handler\Module\LogFile;
+use Ignaszak\Exception\Modules\LogFile;
 
 class LogFileTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,13 +24,6 @@ class LogFileTest extends \PHPUnit_Framework_TestCase
         $this->_errorHandler->setErrorHandler();
         trigger_error('Test LogFile');
         $this->_logFile->createLogFile();
-        $this->_logFile->createLogFileListArray();
-    }
-
-    public function testlogFileArray()
-    {
-        $this->logFileArray = $this->_logFile->getLogFileArray();
-        $this->assertTrue(!empty($this->logFileArray));
     }
 
     public function testCreateLogFile()

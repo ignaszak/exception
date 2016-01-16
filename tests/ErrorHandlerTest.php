@@ -3,7 +3,7 @@
 namespace Test;
 
 use Ignaszak\Exception\Handler\ErrorHandler;
-use Ignaszak\Exception\Handler\IController;
+use Ignaszak\Exception\Controller\IController;
 
 class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
 {

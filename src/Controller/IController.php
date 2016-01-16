@@ -9,7 +9,7 @@
  * @link      http://phpdoc.org
  */
 
-namespace Ignaszak\Exception\Handler;
+namespace Ignaszak\Exception\Controller;
 
 /**
  * 
@@ -25,8 +25,6 @@ abstract class IController
      */
     protected static $errorArray = array();
 
-    abstract public function getDisplay();
-    abstract public function getLogFile();
     abstract public function catchErrorAndHandle(array $error);
     abstract public function addReportedErrorCode($code);
     abstract public function __destruct();
@@ -35,7 +33,7 @@ abstract class IController
     /**
      * @return array
      */
-    public static function getErrorArray()
+    public static function getErrorArray(): array
     {
         return self::$errorArray;
     }

@@ -9,7 +9,7 @@
  * @link      http://phpdoc.org
  */
 
-namespace Ignaszak\Exception\Handler\Module;
+namespace Ignaszak\Exception\Modules;
 
 /**
  * 

@@ -3,7 +3,8 @@
 namespace Test;
 
 use Ignaszak\Exception\Handler\ExceptionHandler;
-use Ignaszak\Exception\Handler\IController;
+use Ignaszak\Exception\Controller\IController;
+use Ignaszak\Exception\Conf;
 
 class ExceptionHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,6 +13,7 @@ class ExceptionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        Conf::instance();
         $this->_exceptionHandler = new ExceptionHandler;
     }
 

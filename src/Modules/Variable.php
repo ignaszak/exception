@@ -9,7 +9,7 @@
  * @link      http://phpdoc.org
  */
 
-namespace Ignaszak\Exception\Handler\Module;
+namespace Ignaszak\Exception\Modules;
 
 /**
  * 
@@ -25,18 +25,18 @@ class Variable
      * 
      * @return string
      */
-    public static function getFormatedGlobalVariablesAsString()
+    public static function getFormatedServerDataAsString()
     {
         $array = array();
 
-        foreach (self::getGlobalVariables() as $key=>$variable) {
+        foreach (self::getServerData() as $key=>$variable) {
             if (!empty($variable)) {
 
                 $array[] = "<b>$key</b>";
 
                 foreach ($variable as $key=>$value) {
                     $value = self::formatVariableType($value);
-                    $value = self::formatGlobalVariableValue($value, $key);
+                    $value = self::formatServerDataValue($value, $key);
                     $array[] = sprintf(
                         " %-33.33s %s",
                         "[$key]:",
@@ -92,7 +92,7 @@ class Variable
      * @param string $key
      * @return string
      */
-    private static function formatGlobalVariableValue($value, $key)
+    private static function formatServerDataValue($value, $key)
     {
         $value = str_replace("\n", "", $value);
         $value = strip_tags($value);
@@ -106,7 +106,7 @@ class Variable
     /**
      * @return array
      */
-    private static function getGlobalVariables()
+    private static function getServerData()
     {
         return array(
             '$_SERVER'  => $_SERVER,

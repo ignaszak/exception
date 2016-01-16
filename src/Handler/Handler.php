@@ -11,8 +11,9 @@
 
 namespace Ignaszak\Exception\Handler;
 
-use Ignaszak\Exception\Handler\Module\FileContent;
-use Ignaszak\Exception\Handler\Module\Variable;
+use Ignaszak\Exception\Modules\FileContent;
+use Ignaszak\Exception\Modules\Variable;
+use Ignaszak\Exception\Controller\Controller;
 
 /**
  * 
@@ -92,7 +93,7 @@ abstract class Handler
         $array = array();
 
         foreach ($args as $value) {
-            $array[] = Variable::formatVariableType($value, "'");
+            $array[] = Variable::formatVariableType(@$value, "'");
         }
 
         $stringArgs = implode(', ', $array);

@@ -17,7 +17,7 @@ The package is avilable via [Composer/Packagist](https://packagist.org/packages/
 or:
 
 ```sh
-composer require ignaszak/exception
+php composer.phar require ignaszak/exception
 ```
 
 ## Running Tests
@@ -35,6 +35,8 @@ php >= 5.5
 ## Example
 
 ```php
+include __DIR__ . '/autoload.php';
+
 $exception = new Ignaszak\Exception\Start;
 
 // Set which PHP errors are reported
@@ -63,13 +65,6 @@ $exception->createLogFile = true;
 $exception->logFileDir = __DIR__ . '/logs';
 
 $exception->run();
-
-// To show display in 'dev' mode use display method
-// $exception->display();
-
-// Return multidimensional array with log files:
-//    array('fileName', 'filemtime', 'fileContent')
-// $exception->getLogFileArray();
 
 // Make some errors
 notice;

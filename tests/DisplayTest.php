@@ -3,7 +3,7 @@
 namespace Test;
 
 use Ignaszak\Exception\Conf;
-use Ignaszak\Exception\Handler\Module\Display;
+use Ignaszak\Exception\Modules\Display;
 
 class DisplayTest extends \PHPUnit_Framework_TestCase
 {

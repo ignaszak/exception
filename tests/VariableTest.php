@@ -2,7 +2,7 @@
 
 namespace Test;
 
-use Ignaszak\Exception\Handler\Module\Variable;
+use Ignaszak\Exception\Modules\Variable;
 
 class VariableTest extends \PHPUnit_Framework_TestCase
 {

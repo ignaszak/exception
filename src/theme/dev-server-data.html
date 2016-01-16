@@ -1,5 +1,5 @@
 <p>
-    <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target=".bs-globalVars-modal-lg">
+    <button type="button" class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target=".bs-globalVars-modal-lg">
         Global vars
     </button>
 </p>
@@ -13,12 +13,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Global variables
+                    Server data
                 </h4>
             </div>
 
             <div class="modal-scroll">
-                <pre class="pre-none"><?php echo str_replace("\n","<br>",str_replace(" ","&nbsp;",$formatedGlobalVariablesAsString)); ?></pre>
+                <pre class="pre-none"><?php echo $this->getServerData(); ?></pre>
             </div>
 
         </div>

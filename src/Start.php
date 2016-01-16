@@ -11,10 +11,8 @@
 
 namespace Ignaszak\Exception;
 
-use Ignaszak\Exception\Handler\Controller;
 use Ignaszak\Exception\Handler\ErrorHandler;
 use Ignaszak\Exception\Handler\ExceptionHandler;
-use Ignaszak\Exception\Handler\Module\LogFile;
 
 /**
  * Initializes handler
@@ -60,27 +58,6 @@ class Start
      */
     public function __set($property, $value) {
         $this->_conf->setProperty($property, $value);
-    }
-
-    /**
-     * Display developer interface
-     */
-    public static function display()
-    {
-        $_controller = Controller::instance();
-        $_controller->cleanBuffer();
-        $_controller->getLogFile()->createLogFileListArray();
-        $_controller->getDisplay()->loadDisplay('dev');
-    }
-
-    /**
-     * Returns array with log files
-     */
-    public static function getLogFileArray()
-    {
-        $_logFile = new LogFile;
-        $_logFile->createLogFileListArray();
-        return LogFile::getLogFileArray();
     }
 
     /**

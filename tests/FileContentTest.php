@@ -2,7 +2,7 @@
 
 namespace Test;
 
-use Ignaszak\Exception\Handler\Module\FileContent;
+use Ignaszak\Exception\Modules\FileContent;
 
 class FileContentTest extends \PHPUnit_Framework_TestCase
 {

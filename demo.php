@@ -31,13 +31,6 @@ $exception->logFileDir = __DIR__ . '/logs';
 
 $exception->run();
 
-// To show display in 'dev' mode use display method
-// $exception->display();
-
-// Return multidimensional array with log files:
-//    array('fileName', 'filemtime', 'fileContent')
-// $exception->getLogFileArray();
-
 // Make some errors
 notice;
 

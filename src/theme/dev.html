@@ -1,194 +1,18 @@
-<?php include __DIR__ . '/header.html'; ?>
+<?php $this->load('/header.html'); ?>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCoreMidnight.min.css" rel="stylesheet">
 <script src="http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shCore.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shAutoloader.js" type="text/javascript"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/2.0.0/xregexp.js"></script>
 
 <script> 
-    function path() {
-        var args = arguments,
-            result = []
-            ;
-
-        for(var i = 0; i < args.length; i++)
-            result.push(args[i].replace('@', 'https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/'));
-
-        return result
-    };
-
-    $(document).ready(function() {    
-
-        SyntaxHighlighter.autoloader.apply(null, path(
-            'applescript            @shBrushAppleScript.js',
-            'actionscript3 as3      @shBrushAS3.js',
-            'bash shell             @shBrushBash.js',
-            'coldfusion cf          @shBrushColdFusion.js',
-            'cpp c                  @shBrushCpp.js',
-            'c# c-sharp csharp      @shBrushCSharp.js',
-            'css                    @shBrushCss.js',
-            'delphi pascal          @shBrushDelphi.js',
-            'diff patch pas         @shBrushDiff.js',
-            'erl erlang             @shBrushErlang.js',
-            'groovy                 @shBrushGroovy.js',
-            'java                   @shBrushJava.js',
-            'jfx javafx             @shBrushJavaFX.js',
-            'js jscript javascript  @shBrushJScript.js',
-            'perl pl                @shBrushPerl.js',
-            'php                    @shBrushPhp.js',
-            'text plain             @shBrushPlain.js',
-            'py python              @shBrushPython.js',
-            'ruby rails ror rb      @shBrushRuby.js',
-            'sass scss              @shBrushSass.js',
-            'scala                  @shBrushScala.js',
-            'sql                    @shBrushSql.js',
-            'vb vbnet               @shBrushVb.js',
-            'xml xhtml xslt html    @shBrushXml.js'
-        ));
-
-        SyntaxHighlighter.all();
-
-    });
-</script> 
-
-<style>
-    .menu-left {
-        height: 100%;
-        overflow: hidden;
-        padding: 5px;
-        white-space: nowrap;
-    }
-
-    .error-list {
-        max-height: 250px;
-        overflow-y: auto;
-        margin-bottom: 20px;
-    }
-
-    .navbar {
-        margin: 0px;
-    }
-
-    .content {
-        padding: 5px;
-        border-left: 1px solid #000;
-    }
-
-    .file-content {
-        padding: 0px;
-        background-color: #0F192A;
-    }
-
-    .file-content > p {
-        margin-left: 10px;
-    }
-
-    .well {
-        font-size: 16px;
-    }
-
-    .break-all {
-        word-break: break-all;
-    }
-
-    .panel-default>.trace-message {
-        padding: 1px;
-    }
-
-    .active {
-        background-color: #3E444C;
-    }
-
-    .pre-none {
-        border: 0px;
-        font-size: 12px;
-        white-space: nowrap;
-        margin: 0px;
-    }
-
-    .modal .modal-dialog {
-        width: 90%;
-    }
-
-    .modal-scroll {
-        overflow: auto;
-    }
-
-    @media only screen and (max-width : 768px) {
-        .content {
-            border-left: 0px;
-            border-top: 1px solid #000;
-        }
-        .modal .modal-dialog {
-            margin: 5px;
-        }
-    }
-</style>
-
-<script>
-    function showLogFileList()
-    {
-        $('table#logFileList').show();
-        $('div.logFileContent').hide();
-        $('button#logListBack').hide();
-    }
-
-    $(document).ready(function () {
-
-        navHeight = $('nav div.container-fluid').outerHeight();
-        windowHeight = $(window).height();
-        windowWidth = $(window).width();
-
-        $('div.content').css('height', windowHeight - navHeight - 51);
-        $('div.logFileContent').hide();
-        $('.modal-scroll').css('height', windowHeight*0.8);
-        $('.modal-scroll pre.pre-none').css('height', windowHeight*0.8);
-
-        $("button[data-target='.bs-logFile-modal-lg']").click(function(){
-            showLogFileList();
-        });
-
-        $('table#logFileList a').click(function(){
-            logFileName = $(this).attr('id');
-            $('table#logFileList').hide();
-            $('div.' + logFileName).show();
-            $('button#logListBack').show();
-        });
-
-        $("button#logListBack").click(function(){
-            showLogFileList();
-        });
-
-        if ($('div.check-size').is(':visible') == true) {
-
-            $('div.error-list li').tooltip({ container: 'body' });
-            $('.exception-content').hide();
-            $('#ignaszak-exception-content-1').show();
-            $('a#1').addClass('active');
-
-            $('.ignaszak-exception-menu').click(function(){
-                $('.exception-content').hide();
-                $('.ignaszak-exception-menu').removeClass('active');
-                $(this).addClass('active');
-                number = $(this).attr('id');
-                $('#ignaszak-exception-content-'+number).show();
-            });
-
-        } else {
-
-            $('.modal .modal-dialog').css('width', windowWidth - 10);
-
-        }
-
-    });
+<?php $this->load('/js/syntax-highlighter.js'); ?>
+<?php $this->load('/js/error-display.js'); ?>
 </script>
 
-<?php
-$errorArray = \Ignaszak\Exception\Handler\IController::getErrorArray();
-$logFileArray = \Ignaszak\Exception\Handler\Module\LogFile::getLogFileArray();
-$formatedGlobalVariablesAsString = Ignaszak\Exception\Handler\Module\Variable::getFormatedGlobalVariablesAsString();
-?>
+<style>
+<?php $this->load('/css/shCoreFadeToGrey.css'); ?>
+<?php $this->load('/css/main.css'); ?>
+</style>
 
 <!-- NAVBAR -->
 
@@ -206,22 +30,22 @@ $formatedGlobalVariablesAsString = Ignaszak\Exception\Handler\Module\Variable::g
         <div class="col-sm-3 menu-left">
 
             <div class="check-size hidden-xs">
-                <?php include __DIR__ . '/dev-error-list.html'; ?>
+                <?php $this->load('/dev-error-list.html'); ?>
             </div>
 
-            <?php include __DIR__ . '/dev-global-vars.html'; ?>
+            <?php $this->load('/dev-server-data.html'); ?>
 
-            <?php include __DIR__ . '/dev-log-files.html'; ?>
+            <?php $this->load('/dev-inf.html'); ?>
 
         </div>
 
         <!-- BODY -->
 
         <div class="col-sm-9 content">
-            <?php include __DIR__ . '/dev-error-display.html'; ?>
+            <?php $this->load('/dev-error-display.html'); ?>
         </div>
 
     </div>
 </div>
 
-<?php include __DIR__ . '/footer.html'; ?>
+<?php $this->load('/footer.html'); ?>

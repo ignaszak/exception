@@ -9,10 +9,10 @@
  * @link      http://phpdoc.org
  */
 
-namespace Ignaszak\Exception\Handler\Module;
+namespace Ignaszak\Exception\Modules;
 
 use Ignaszak\Exception\Conf;
-use Ignaszak\Exception\Handler\IController;
+use Ignaszak\Exception\Controller\IController;
 
 /**
  * Saves log file and generates log file array
@@ -25,14 +25,7 @@ class LogFile
 {
 
     /**
-     * Stores log files array
-     * 
-     * @var array
-     */
-    private static $logFileArray = array();
-
-    /**
-     * Gathers informations about Server, execution environment and occured errors
+     * Gathers informations about Server, execution environment, occured errors
      * and creates log files
      */
     public function createLogFile()
@@ -47,50 +40,15 @@ class LogFile
                    . sprintf("%-17.17s %s", "Date:", date('F d Y H:i:s')) . "\n"
                    . sprintf("%-17.17s %s", "Reported errors:", $logDisplayArray['errorsCount']);
 
-            $globalVars = Variable::getFormatedGlobalVariablesAsString();
+            $globalVars = Variable::getFormatedServerDataAsString();
 
             $content = strip_tags("$header\n\n\n$globalVars\n\n\n{$logDisplayArray['errors']}");
 
-            $fileName = md5(time()) . '.log';
+            $fileName = date('Y_m_d_H_i_s_u', time()) . '.log';
 
             file_put_contents("$logDir/$fileName", $content);
             chmod("$logDir/$fileName", 0664);
         }
-    }
-
-    /**
-     * Reads log files and adds its contents to log file array
-     */
-    public function createLogFileListArray()
-    {
-        $logDir = Conf::get('logFileDir');
-
-        if (is_readable($logDir)) {
-            $logDirArray = scandir($logDir);
-
-            $array = array();
-
-            foreach ($logDirArray as $file) {
-                if (is_readable("$logDir/$file") && $file != '.' && $file != '..') {
-                    $array[] = array(
-                        'fileName' => $file,
-                        'filemtime' => filemtime("$logDir/$file"),
-                        'fileContent' => file_get_contents("$logDir/$file")
-                    );
-                }
-            }
-
-            self::$logFileArray = $array;
-            $this->sortLogFileArrayByDate();
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public static function getLogFileArray()
-    {
-        return self::$logFileArray;
     }
 
     /**
@@ -122,16 +80,6 @@ class LogFile
         return array(
             'errors' => implode("\n", $array),
             'errorsCount' => $count - 1
-        );
-    }
-
-    private function sortLogFileArrayByDate()
-    {
-        usort(self::$logFileArray,
-            function($a, $b)
-            {
-                return strnatcmp($b['filemtime'], $a['filemtime']);
-            }
         );
     }
 
