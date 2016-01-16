@@ -1,26 +1,7 @@
-<?php include __DIR__ . '/header.html'; ?>
+<?php $this->load('/header.html'); ?>
 
 <style>
-    .container {
-        height: 100%;
-    }
-
-    .vertical-centre {
-        position: absolute;
-        top: 30%;
-        left:50%;
-        transform: translate(-50%,-50%);
-    }
-    
-    .panel {
-        min-width: 500px;
-        min-height: 100px;
-    }
-    
-    .panel-footer {
-        text-align: right;
-        padding: 5px 20px 5px 0px;
-    }
+<?php $this->load('/css/user.css'); ?>
 </style>
 
 <div class="container">
@@ -31,7 +12,7 @@
                 <h3 style="margin:0px;">Error</h3>
             </div>
             <div class="panel-body">
-                <h4><?php echo \Ignaszak\Exception\Conf::get('userMessage'); ?></h4>
+                <h4><?php echo $this->getUserMessage(); ?></h4>
             </div>
             <div class="panel-footer">
                 <a href="https://github.com/ignaszak/exception" target="_blank">ignaszak/exception</a>
@@ -41,4 +22,4 @@
     </div>
 </div>
 
-<?php include __DIR__ . '/footer.html'; ?>
+<?php $this->load('/footer.html'); ?>

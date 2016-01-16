@@ -1,0 +1,17 @@
+.container {
+    height: 100%;
+}
+.vertical-centre {
+    position: absolute;
+    top: 30%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.panel {
+    min-width: 500px;
+    min-height: 100px;
+}
+.panel-footer {
+    text-align: right;
+    padding: 5px 20px 5px 0px;
+}

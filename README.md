@@ -30,7 +30,7 @@ php phpunit.phar
 
 ## Requirments
 
-php >= 5.5
+php >= 7.0
 
 ## Example
 

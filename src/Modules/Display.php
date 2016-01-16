@@ -77,6 +77,14 @@ class Display
     }
 
     /**
+     * @return string
+     */
+    private function getUserMessage(): string
+    {
+        return Conf::get('userMessage');
+    }
+
+    /**
      * @param string $file
      */
     private function load(string $file)
