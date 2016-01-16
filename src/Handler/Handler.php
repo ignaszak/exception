@@ -88,10 +88,10 @@ abstract class Handler
     /**
      * Returns formated arguments as string
      * 
-     * @param array $args
+     * @param mixed $args
      * @return string
      */
-    private function getFunctionArgs(array $args = null): string
+    private function getFunctionArgs($args = null): string
     {
         if (is_null($args)) $args = array();
         $array = array();

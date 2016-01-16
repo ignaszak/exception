@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('.backtrace').click(function(){
         var parent = $(this).parent();
         var content = parent[0].children[1];
-        $('.backtrace-content:visible').not(content).toggle(200);
+        $('.backtrace-content:visible').not(content).hide(200);
         $(content).toggle(200);
     });
 });
