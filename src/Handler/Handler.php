@@ -62,7 +62,7 @@ abstract class Handler
 
         $array = array();
         $count = count($backtrace);
-        $j = 0;
+        $j = 1;
 
         for ($i = $forBegin; $i < $count; ++$i) {
             $file = $this->getBacktraceFromKey($backtrace[$i], 'file');
@@ -73,10 +73,16 @@ abstract class Handler
             $args = $this->getFunctionArgs($this->getBacktraceFromKey($backtrace[$i], 'args'));
 
             if ($file != '' && $line != '') {
-                $array[$j]['message']  = "#{$count} {$class}{$type}{$function}
-                    (<span style=\"color:grey;\">{$args}</span>)";
-                $array[$j]['file']     = "{$file}({$line})";
-                $array[$j]['content']  = self::$_fileContent->getFileContent(
+                $array[$j]['message'] = sprintf("<span class=\"pre\">%-6s</span>%s%s%s%s",
+                    "#{$j}",
+                    $class,
+                    $type,
+                    $function,
+                    "(<span style=\"color:grey;\">{$this->cutString($args)}</span>)"
+                );
+                $array[$j]['file']      = "{$file}({$line})";
+                $array[$j]['arguments'] = $args;
+                $array[$j]['content']   = self::$_fileContent->getFileContent(
                     $file, $line, 3);
                 ++$j;
             }
@@ -101,7 +107,7 @@ abstract class Handler
         }
 
         $stringArgs = implode(', ', $array);
-        return $this->cutString($stringArgs);
+        return $stringArgs;
     }
 
     /**

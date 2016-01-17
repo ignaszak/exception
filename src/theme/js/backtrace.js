@@ -4,6 +4,6 @@ $(document).ready(function () {
         var parent = $(this).parent();
         var content = parent[0].children[1];
         $('.backtrace-content:visible').not(content).hide(200);
-        $(content).toggle(200);
+        $(content).show(200);
     });
 });

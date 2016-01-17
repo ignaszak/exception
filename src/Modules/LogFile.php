@@ -70,7 +70,11 @@ class LogFile
                 $array[] = "    [Backtrace]:";
                 foreach ($value['trace'] as $trace) {
                     $message = str_replace("\n", "\n            ", $trace['message']);
-                    $array[] = "        $message in {$trace['file']}";
+                    $array[] = "        {$message}";
+                    $array[] = "              IN: {$trace['file']}";
+                    $array[] = "              ARGUMENTS:";
+                    $array[] = "                  " .
+                        str_replace("\n", "\n                  ", $trace['arguments']);
                 }
             }
 
