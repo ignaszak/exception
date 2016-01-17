@@ -16,7 +16,7 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
     public function testGetTrace()
     {
         $getTrace = Mock\MockTest::callProtectedMethod($this->_handler, 'getTrace');
-        $this->assertTrue(!empty($getTrace[0]));
+        $this->assertTrue(!empty($getTrace[1]));
     }
 
     public function testGetFunctionArgs()
