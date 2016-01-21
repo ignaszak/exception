@@ -12,7 +12,7 @@
 namespace Ignaszak\Exception\Controller;
 
 /**
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Handler/IController.php
  *
@@ -37,5 +37,4 @@ abstract class IController
     {
         return self::$errorArray;
     }
-
 }

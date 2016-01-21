@@ -16,7 +16,7 @@ use Ignaszak\Exception\Handler\ExceptionHandler;
 
 /**
  * Initializes handler
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Start.php
  *
@@ -26,21 +26,21 @@ class Start
 
     /**
      * Stores ErrorHandler instance
-     * 
+     *
      * @var ErrorHandler
      */
     private $_errorHandler;
 
     /**
      * Stores ExceptionHandler instance
-     *  
+     *
      * @var ExceptionHandler
      */
     private $_exceptionHandler;
 
     /**
      *  Stores Conf instance
-     *  
+     *
      * @var Conf
      */
     private $_conf;
@@ -56,7 +56,8 @@ class Start
      * @param string $property
      * @param string $value
      */
-    public function __set(string $property, $value) {
+    public function __set(string $property, $value)
+    {
         $this->_conf->setProperty($property, $value);
     }
 
@@ -86,13 +87,13 @@ class Start
 
     private function errorReporting()
     {
-        if (!empty(Conf::get('errorReporting')))
+        if (!empty(Conf::get('errorReporting'))) {
             error_reporting(Conf::get('errorReporting'));
+        }
     }
 
     private function setObStart()
     {
         ob_start();
     }
-
 }

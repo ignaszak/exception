@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('#ignaszak-exception-content-1').show();
         $('a#1').addClass('active');
 
-        $('.ignaszak-exception-menu').click(function(){
+        $('.ignaszak-exception-menu').click(function () {
             $('.exception-content').hide();
             $('.ignaszak-exception-menu').removeClass('active');
             $(this).addClass('active');

@@ -41,5 +41,4 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
         $isArrayNotEmpty = Mock\MockTest::callProtectedMethod($this->_controller, 'isArrayNotEmpty', array($args));
         $this->assertEquals(0, $isArrayNotEmpty);
     }
-
 }

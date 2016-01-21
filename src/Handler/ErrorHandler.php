@@ -13,7 +13,7 @@ namespace Ignaszak\Exception\Handler;
 
 /**
  * Provides methods to handle errors
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Handler/ErrorHandler.php
  *
@@ -26,7 +26,7 @@ class ErrorHandler extends Handler
      */
     public function setErrorHandler()
     {
-        set_error_handler(function($errorNumber, $errorMessage, $errorFile, $errorLine){
+        set_error_handler(function ($errorNumber, $errorMessage, $errorFile, $errorLine) {
 
             parent::$_controller->catchErrorAndHandle(array(
                 $this->getErrorTypeByNumber($errorNumber),
@@ -48,7 +48,7 @@ class ErrorHandler extends Handler
      */
     public function setShutdownHandler()
     {
-        register_shutdown_function(function(){
+        register_shutdown_function(function () {
 
             $lastError = error_get_last();
 
@@ -71,7 +71,7 @@ class ErrorHandler extends Handler
 
     /**
      * If error is not suppressed returns error type
-     * 
+     *
      * @param integer $errorNumber
      * @return string
      */
@@ -81,26 +81,59 @@ class ErrorHandler extends Handler
 
         if ($errorNumber) {
             switch ($errorNumber) {
-                case E_ERROR:             return "Fatal error";                  break;
-                case E_WARNING:           return "Warning";                      break;
-                case E_PARSE:             return "Parse error";                  break;
-                case E_NOTICE:            return "Notice";                       break;
-                case E_CORE_ERROR:        return "Core error";                   break;
-                case E_CORE_WARNING:      return "Core warning";                 break;
-                case E_COMPILE_ERROR:     return "Compile error";                break;
-                case E_COMPILE_WARNING:   return "Compile warning";              break;
-                case E_USER_ERROR:        return "User error";                   break;
-                case E_USER_WARNING:      return "User warning";                 break;
-                case E_USER_NOTICE:       return "User notice";                  break;
-                case E_STRICT:            return "Strict notice";                break;
-                case E_RECOVERABLE_ERROR: return "Recoverable error";            break;
-                case E_DEPRECATED:        return "Deprecated error";             break;
-                case E_USER_DEPRECATED:   return "User deprecated error";        break;
-                case E_RECOVERABLE_ERROR: return "Recoverable error";            break;
-                default:                  return "Unknown error ($errorNumber)"; break;
+                case E_ERROR:
+                    return "Fatal error";
+                break;
+                case E_WARNING:
+                    return "Warning";
+                break;
+                case E_PARSE:
+                    return "Parse error";
+                break;
+                case E_NOTICE:
+                    return "Notice";
+                break;
+                case E_CORE_ERROR:
+                    return "Core error";
+                break;
+                case E_CORE_WARNING:
+                    return "Core warning";
+                break;
+                case E_COMPILE_ERROR:
+                    return "Compile error";
+                break;
+                case E_COMPILE_WARNING:
+                    return "Compile warning";
+                break;
+                case E_USER_ERROR:
+                    return "User error";
+                break;
+                case E_USER_WARNING:
+                    return "User warning";
+                break;
+                case E_USER_NOTICE:
+                    return "User notice";
+                break;
+                case E_STRICT:
+                    return "Strict notice";
+                break;
+                case E_RECOVERABLE_ERROR:
+                    return "Recoverable error";
+                break;
+                case E_DEPRECATED:
+                    return "Deprecated error";
+                break;
+                case E_USER_DEPRECATED:
+                    return "User deprecated error";
+                break;
+                case E_RECOVERABLE_ERROR:
+                    return "Recoverable error";
+                break;
+                default:
+                    return "Unknown error ($errorNumber)";
+                break;
             }
         }
         return '';
     }
-
 }

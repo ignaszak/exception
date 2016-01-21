@@ -26,5 +26,4 @@ class DisplayTest extends \PHPUnit_Framework_TestCase
         $headers_list = xdebug_get_headers();
         $this->assertContains("Location: $location", $headers_list);
     }
-
 }

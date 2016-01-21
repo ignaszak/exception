@@ -16,7 +16,7 @@ use Ignaszak\Exception\Modules\Display;
 use Ignaszak\Exception\Modules\LogFile;
 
 /**
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Controller.php
  *
@@ -48,14 +48,14 @@ class Controller extends IController
     /**
      * Stores reported error and exception level (for exceptions default is E_ERROR
      * but it can be changed in Start::catchException($e [, $error_level]) function)
-     * 
+     *
      * @var integer
      */
     private static $reportedErrorCode;
 
     /**
      * Counter used to prevent multi-call __destruct method
-     * 
+     *
      * @var integer
      */
     private static $count = 0;
@@ -71,8 +71,9 @@ class Controller extends IController
      */
     public static function instance(): Controller
     {
-        if (empty(self::$_controller))
+        if (empty(self::$_controller)) {
             self::$_controller = new Controller;
+        }
 
             return self::$_controller;
     }
@@ -80,7 +81,7 @@ class Controller extends IController
     /**
      * If $error is not empty and invoked error is not suppressed
      * adds passed error array to IController::$errorArray
-     * 
+     *
      * @param array $error
      */
     public function catchErrorAndHandle(array $error)
@@ -116,13 +117,14 @@ class Controller extends IController
 
     public function cleanBuffer()
     {
-        if (ob_get_contents())
+        if (ob_get_contents()) {
             ob_clean();
+        }
     }
 
     /**
      * Returns true if occcured error level is defined in 'userReporting' setting
-     * 
+     *
      * @return boolean
      */
     private function isUserReporting(): bool
@@ -137,7 +139,7 @@ class Controller extends IController
     /**
      * Returns false if error was suppressed with the @-operator
      * (first array parameter - error type)
-     * 
+     *
      * @param array $error
      * @return boolean
      */
@@ -147,8 +149,8 @@ class Controller extends IController
     }
 
     /**
-     * Converts indexed array into associative 
-     * 
+     * Converts indexed array into associative
+     *
      * @param array $array
      * @return array
      */
@@ -175,7 +177,7 @@ class Controller extends IController
 
     /**
      * Returns true if minimum one of elements is not empty
-     * 
+     *
      * @param array $array
      * @return boolean
      */
@@ -183,9 +185,10 @@ class Controller extends IController
     {
         $i = 0;
         foreach ($array as $value) {
-            if (!empty($value)) ++$i;
+            if (!empty($value)) {
+                ++$i;
+            }
         }
         return $i;
     }
-
 }

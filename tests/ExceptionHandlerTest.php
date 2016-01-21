@@ -22,7 +22,7 @@ class ExceptionHandlerTest extends \PHPUnit_Framework_TestCase
         $message = 'Test catchException()';
         try {
             throw new \Exception($message);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->_exceptionHandler->catchException($e);
         } finally {
             $errorArray = IController::getErrorArray();
@@ -31,5 +31,4 @@ class ExceptionHandlerTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($errorArray['message'], $message);
         }
     }
-
 }

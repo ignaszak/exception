@@ -34,7 +34,8 @@ $exception->run();
 // Make some errors
 notice;
 
-class Test {
+class Test
+{
     public function throwException()
     {
         throw new Exception('Test exception');
@@ -48,5 +49,3 @@ try {
 }
 
 fatalError();
-
-?>

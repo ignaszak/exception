@@ -1,15 +1,16 @@
-function path() {
+function path()
+{
     var args = arguments,
         result = []
         ;
 
-    for(var i = 0; i < args.length; i++)
-        result.push(args[i].replace('@', 'https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/'));
+    for (var i = 0; i < args.length; i++) {
+        result.push(args[i].replace('@', 'https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/')); }
 
     return result
 };
 
-$(document).ready(function() {    
+$(document).ready(function () {
 
     SyntaxHighlighter.autoloader.apply(null, path(
         'applescript            @shBrushAppleScript.js',

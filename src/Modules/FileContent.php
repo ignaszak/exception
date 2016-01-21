@@ -12,7 +12,7 @@
 namespace Ignaszak\Exception\Modules;
 
 /**
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Module/FileContent.php
  *
@@ -22,35 +22,35 @@ class FileContent
 
     /**
      * Stores file dir
-     * 
+     *
      * @var string
      */
     private $file;
 
     /**
      * Stores line number
-     * 
+     *
      * @var integer
      */
     private $line;
 
     /**
      * Stores result of file() function
-     * 
+     *
      * @var array
      */
     private $fileArray = array();
 
     /**
      * Stores defined offest (default 10)
-     * 
+     *
      * @var integer
      */
     private $fileFragmentOffset;
 
     /**
      * Sets passed arguments to properties and returns generated file fragment
-     * 
+     *
      * @param string $file
      * @param integer $line
      * @param integer $offset
@@ -75,8 +75,9 @@ class FileContent
     {
         $this->file = $file;
         $this->line = $line;
-        if ($offset > 0)
+        if ($offset > 0) {
             $this->fileFragmentOffset = $offset;
+        }
     }
 
     private function loadFileToArray()
@@ -86,7 +87,7 @@ class FileContent
 
     /**
      * Gets file fragment and creates SyntaxHighlighter <pre> tag
-     * 
+     *
      * @return string
      */
     private function displayContent(): string
@@ -102,7 +103,7 @@ class FileContent
 
     /**
      * Based on array_slice function, defined offset and line returns file fragment
-     * 
+     *
      * @return string
      */
     private function getFileFragment(): string
@@ -117,5 +118,4 @@ class FileContent
 
         return str_replace("\n", "&nbsp;\n", $fragment);
     }
-
 }

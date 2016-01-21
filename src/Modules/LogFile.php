@@ -16,7 +16,7 @@ use Ignaszak\Exception\Controller\IController;
 
 /**
  * Saves log file and generates log file array
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link
  *
@@ -53,7 +53,7 @@ class LogFile
 
     /**
      * Returns formated error array
-     * 
+     *
      * @return array
      */
     private function loadLogDisplay(): array
@@ -86,5 +86,4 @@ class LogFile
             'errorsCount' => $count - 1
         );
     }
-
 }

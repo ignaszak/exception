@@ -38,5 +38,4 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
         $cutString = Mock\MockTest::callProtectedMethod($this->_handler, 'cutString', array($string));
         $this->assertEquals("Lorem ipsum dolor sit amet, consectetur", $cutString);
     }
-
 }

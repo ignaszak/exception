@@ -22,5 +22,4 @@ class FileContentTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(26, count($fileArray));
     }
-
 }

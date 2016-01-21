@@ -52,5 +52,4 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $errorIndex = count($errorArray) - 1;
         return $errorArray[$errorIndex];
     }
-
 }

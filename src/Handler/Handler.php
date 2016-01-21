@@ -16,7 +16,7 @@ use Ignaszak\Exception\Modules\Variable;
 use Ignaszak\Exception\Controller\Controller;
 
 /**
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Handler.php
  *
@@ -26,14 +26,14 @@ abstract class Handler
 
     /**
      * Stores instance of Controller class
-     * 
+     *
      * @var Controller
      */
     protected static $_controller;
 
     /**
      * Stores instance of FileContent class
-     * 
+     *
      * @var FileContent
      */
     protected static $_fileContent;
@@ -46,7 +46,7 @@ abstract class Handler
 
     /**
      * Returns backtrace for errors and exceptions as an array
-     * 
+     *
      * @param object $e
      * @return array
      */
@@ -73,7 +73,8 @@ abstract class Handler
             $args = $this->getFunctionArgs($this->getBacktraceFromKey($backtrace[$i], 'args'));
 
             if ($file != '' && $line != '') {
-                $array[$j]['message'] = sprintf("<span class=\"pre\">%-6s</span>%s%s%s%s",
+                $array[$j]['message'] = sprintf(
+                    "<span class=\"pre\">%-6s</span>%s%s%s%s",
                     "#{$j}",
                     $class,
                     $type,
@@ -83,7 +84,10 @@ abstract class Handler
                 $array[$j]['file']      = "{$file}({$line})";
                 $array[$j]['arguments'] = $args;
                 $array[$j]['content']   = self::$_fileContent->getFileContent(
-                    $file, $line, 3);
+                    $file,
+                    $line,
+                    3
+                );
                 ++$j;
             }
         }
@@ -93,13 +97,15 @@ abstract class Handler
 
     /**
      * Returns formated arguments as string
-     * 
+     *
      * @param mixed $args
      * @return string
      */
     private function getFunctionArgs($args = null): string
     {
-        if (is_null($args)) $args = array();
+        if (is_null($args)) {
+            $args = array();
+        }
         $array = array();
 
         foreach ($args as $value) {
@@ -113,7 +119,7 @@ abstract class Handler
     /**
      * Checks if passed key exists in backtrace array and returns defined array element
      * (for backtrace['args') returns array)
-     * 
+     *
      * @param array $backtrace
      * @param string $key
      * @return (string|array)
@@ -132,5 +138,4 @@ abstract class Handler
         $length = 40;
         return substr($string, 0, $length) . (strlen($string) > $length ? "..." : "");
     }
-
 }

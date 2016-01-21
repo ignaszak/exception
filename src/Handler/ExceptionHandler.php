@@ -13,7 +13,7 @@ namespace Ignaszak\Exception\Handler;
 
 /**
  * Exceptions handler
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/ExceptionHandler.php
  *
@@ -27,7 +27,7 @@ class ExceptionHandler extends Handler
      */
     public function setExceptionHandler()
     {
-        set_exception_handler(function($e) {
+        set_exception_handler(function ($e) {
 
             parent::$_controller->catchErrorAndHandle(array(
                 'Uncaught exception: ' . get_class($e), // Exception name as error type
@@ -46,7 +46,7 @@ class ExceptionHandler extends Handler
 
     /**
      * Catchs exception
-     * 
+     *
      * @param object $e
      * @param integer $type
      */
@@ -70,7 +70,7 @@ class ExceptionHandler extends Handler
 
     /**
      * Checks if $type is right error type
-     * 
+     *
      * @param integer $type
      * @return boolean
      */
@@ -97,5 +97,4 @@ class ExceptionHandler extends Handler
 
         return in_array($type, $errorTypeArray);
     }
-
 }

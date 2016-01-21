@@ -31,5 +31,4 @@ class LogFileTest extends \PHPUnit_Framework_TestCase
         $file = $this->_conf->get('logFileDir') . '/' . $this->logFileArray[0]['fileName'];
         $this->assertTrue(file_exists($file));
     }
-
 }

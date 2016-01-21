@@ -12,7 +12,7 @@
 namespace Ignaszak\Exception\Modules;
 
 /**
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Module/Variable.php
  *
@@ -22,26 +22,26 @@ class Variable
 
     /**
      * Returns server and execution environment information
-     * 
+     *
      * @return string
      */
     public static function getFormatedServerDataAsString(): string
     {
         $array = array();
 
-        foreach (self::getServerData() as $key=>$variable) {
+        foreach (self::getServerData() as $key => $variable) {
             if (!empty($variable)) {
 
                 $array[] = "<b>$key</b>";
 
-                foreach ($variable as $key=>$value) {
+                foreach ($variable as $key => $value) {
                     $value = self::formatVariableType($value);
                     $value = self::formatServerDataValue($value, $key);
                     $array[] = sprintf(
                         " %-33.33s %s",
                         "[$key]:",
                         $value
-                        );
+                    );
                 }
             }
         }
@@ -51,7 +51,7 @@ class Variable
 
     /**
      * Changes passed $value to pirntable version
-     * 
+     *
      * @param mixed $value
      * @param string $stringQuotation
      */
@@ -81,13 +81,14 @@ class Variable
             case "unknown type":
                 return $valueType;
                 break;
-            default: return $valueType;
+            default:
+                return $valueType;
         }
     }
 
     /**
      * Deletes new lines, hatml tags and adds formated date for time
-     * 
+     *
      * @param string $value
      * @param string $key
      * @return string
@@ -97,8 +98,9 @@ class Variable
         $value = str_replace("\n", "", $value);
         $value = strip_tags($value);
 
-        if ($key == 'REQUEST_TIME_FLOAT' || $key == 'REQUEST_TIME')
+        if ($key == 'REQUEST_TIME_FLOAT' || $key == 'REQUEST_TIME') {
             $value = "$value (" . date("c", $value) . ")";
+        }
 
             return $value;
     }
@@ -118,5 +120,4 @@ class Variable
             '$_ENV'     => $_ENV
         );
     }
-
 }

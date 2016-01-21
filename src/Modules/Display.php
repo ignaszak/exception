@@ -15,7 +15,7 @@ use Ignaszak\Exception\Conf;
 use Ignaszak\Exception\Controller\IController;
 
 /**
- * 
+ *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
  * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Module/Display.php
  *
@@ -38,8 +38,9 @@ class Display
      */
     public function loadDisplay(string $display)
     {
-        if (Conf::get('display') == $display && $display != 'location')
+        if (Conf::get('display') == $display && $display != 'location') {
             $this->load("/{$display}.html");
+        }
     }
 
     public function loadLocation()
@@ -48,7 +49,9 @@ class Display
 
         if (Conf::get('display') == 'location' && !empty($location)) {
             header('Location: ' . $location);
-            if (@TEST_MODE !== true) exit;
+            if (@TEST_MODE !== true) {
+                exit;
+            }
         }
     }
 
@@ -90,17 +93,23 @@ class Display
     private function load(string $file)
     {
         $file = "{$this->baseDir}/theme{$file}";
-        if (file_exists($file) && is_readable($file))
+        if (file_exists($file) && is_readable($file)) {
             include($file);
+        }
     }
 
     private function getInf(string $inf): string
     {
         switch ($inf) {
-            case 'time': return date('G:i:s', time());                     break;
-            case 'path': return Conf::get('logFileDir');                   break;
-            case 'log':  return Conf::get('createLogFile') ? 'yes' : 'no'; break;
+            case 'time':
+                return date('G:i:s', time());
+            break;
+            case 'path':
+                return Conf::get('logFileDir');
+            break;
+            case 'log':
+                return Conf::get('createLogFile') ? 'yes' : 'no';
+            break;
         }
     }
-
 }
