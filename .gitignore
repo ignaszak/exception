@@ -1,0 +1,9 @@
+$ cat
+doc/
+logs/
+vendor/
+composer.lock
+.git
+.project
+.settings
+.buildpath
