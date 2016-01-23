@@ -1,24 +1,27 @@
 {
-	"name" : "ignaszak/exception",
-	"type" : "library",
-	"description" : "Exception Handler",
-	"keywords" : [
-		"exception",
-		"error",
-		"handler"
-	],
-	"license" : "MIT",
-	"authors" : [{
-			"name" : "Tomasz Ignaszak",
-			"email" : "tomek.ignaszak@gmail.com"
-		}
-	],
-	"require" : {
-		"php" : ">=7.0"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"Ignaszak\\Exception\\" : "src/"
-		}
-	}
+    "name" : "ignaszak/exception",
+    "type" : "library",
+    "description" : "Exception Handler",
+    "keywords" : [
+        "exception",
+        "error",
+        "handler"
+    ],
+    "license" : "MIT",
+    "authors" : [{
+            "name" : "Tomasz Ignaszak",
+            "email" : "tomek.ignaszak@gmail.com"
+        }
+    ],
+    "require" : {
+        "php" : ">=7.0",
+        "phpunit/phpunit" : "*",
+        "mikey179/vfsStream" : "*"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Ignaszak\\Exception\\" : "src/",
+            "Test\\" : "tests/"
+        }
+    }
 }
