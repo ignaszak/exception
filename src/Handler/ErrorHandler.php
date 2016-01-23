@@ -77,63 +77,62 @@ class ErrorHandler extends Handler
      */
     private function getErrorTypeByNumber(int $errorNumber): string
     {
-        $errorNumber = $errorNumber & error_reporting();
-
-        if ($errorNumber) {
-            switch ($errorNumber) {
-                case E_ERROR:
-                    return "Fatal error";
-                break;
-                case E_WARNING:
-                    return "Warning";
-                break;
-                case E_PARSE:
-                    return "Parse error";
-                break;
-                case E_NOTICE:
-                    return "Notice";
-                break;
-                case E_CORE_ERROR:
-                    return "Core error";
-                break;
-                case E_CORE_WARNING:
-                    return "Core warning";
-                break;
-                case E_COMPILE_ERROR:
-                    return "Compile error";
-                break;
-                case E_COMPILE_WARNING:
-                    return "Compile warning";
-                break;
-                case E_USER_ERROR:
-                    return "User error";
-                break;
-                case E_USER_WARNING:
-                    return "User warning";
-                break;
-                case E_USER_NOTICE:
-                    return "User notice";
-                break;
-                case E_STRICT:
-                    return "Strict notice";
-                break;
-                case E_RECOVERABLE_ERROR:
-                    return "Recoverable error";
-                break;
-                case E_DEPRECATED:
-                    return "Deprecated error";
-                break;
-                case E_USER_DEPRECATED:
-                    return "User deprecated error";
-                break;
-                case E_RECOVERABLE_ERROR:
-                    return "Recoverable error";
-                break;
-                default:
-                    return "Unknown error ($errorNumber)";
-                break;
-            }
+        $errorNumber &= error_reporting(E_ALL);
+        switch ($errorNumber) {
+            case 0:
+                return "";
+            break;
+            case E_ERROR:
+                return "Fatal error";
+            break;
+            case E_WARNING:
+                return "Warning";
+            break;
+            case E_PARSE:
+                return "Parse error";
+            break;
+            case E_NOTICE:
+                return "Notice";
+            break;
+            case E_CORE_ERROR:
+                return "Core error";
+            break;
+            case E_CORE_WARNING:
+                return "Core warning";
+            break;
+            case E_COMPILE_ERROR:
+                return "Compile error";
+            break;
+            case E_COMPILE_WARNING:
+                return "Compile warning";
+            break;
+            case E_USER_ERROR:
+                return "User error";
+            break;
+            case E_USER_WARNING:
+                return "User warning";
+            break;
+            case E_USER_NOTICE:
+                return "User notice";
+            break;
+            case E_STRICT:
+                return "Strict notice";
+            break;
+            case E_RECOVERABLE_ERROR:
+                return "Recoverable error";
+            break;
+            case E_DEPRECATED:
+                return "Deprecated error";
+            break;
+            case E_USER_DEPRECATED:
+                return "User deprecated error";
+            break;
+            case E_RECOVERABLE_ERROR:
+                return "Recoverable error";
+            break;
+            default:
+                return "Unknown error ($errorNumber)";
+            break;
         }
-        return '';
     }
 }

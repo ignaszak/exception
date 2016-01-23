@@ -30,7 +30,7 @@ class Display
 
     public function __construct()
     {
-        $this->baseDir = dirname(__DIR__);
+        $this->baseDir = dirname(__DIR__) . '/theme/';
     }
 
     /**
@@ -92,7 +92,7 @@ class Display
      */
     private function load(string $file)
     {
-        $file = "{$this->baseDir}/theme{$file}";
+        $file = "{$this->baseDir}{$file}";
         if (file_exists($file) && is_readable($file)) {
             include($file);
         }
