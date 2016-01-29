@@ -101,10 +101,10 @@ abstract class Handler
      * @param mixed $args
      * @return string
      */
-    private function getFunctionArgs($args = null): string
+    private function getFunctionArgs($args): string
     {
-        if (is_null($args)) {
-            $args = array();
+        if (!is_array($args)) {
+            $args = array($args);
         }
         $array = array();
 
