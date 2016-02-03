@@ -46,7 +46,7 @@ class FileContent
      *
      * @var integer
      */
-    private $fileFragmentOffset;
+    private $offset;
 
     /**
      * Sets passed arguments to properties and returns generated file fragment
@@ -59,30 +59,12 @@ class FileContent
     public function getFileContent(string $file, int $line, int $offset = 10): string
     {
         if (file_exists($file) && is_readable($file) && $line > 0) {
-            $this->setArgs($file, $line, $offset);
-            $this->loadFileToArray();
+            $this->file = $file;
+            $this->line = $line;
+            $this->offset = $offset;
             return $this->displayContent();
         }
-        return '';
-    }
-
-    /**
-     * @param string $file
-     * @param int $line
-     * @param int $offset
-     */
-    private function setArgs(string $file, int $line, int $offset = null)
-    {
-        $this->file = $file;
-        $this->line = $line;
-        if ($offset > 0) {
-            $this->fileFragmentOffset = $offset;
-        }
-    }
-
-    private function loadFileToArray()
-    {
-        $this->fileArray = file($this->file);
+        return "";
     }
 
     /**
@@ -92,30 +74,46 @@ class FileContent
      */
     private function displayContent(): string
     {
-        $fragment = $this->getFileFragment();
-        $firstLine = $this->line - $this->fileFragmentOffset;
-        $firstLine = ($firstLine < 0 ? 1 : $firstLine);
         $fileType = pathinfo($this->file, PATHINFO_EXTENSION);
-
-        return "<pre class=\"brush: $fileType; first-line: $firstLine; highlight: {$this->line};\">"
-               . $fragment . "</pre>";
+        $firstLine = $this->getBegin() + 1;
+        return <<<EOT
+<pre class="brush: $fileType; first-line: {$firstLine}; highlight: {$this->line};">
+{$this->getFileFragment()}
+</pre>
+EOT;
     }
 
     /**
-     * Based on array_slice function, defined offset and line returns file fragment
-     *
      * @return string
      */
     private function getFileFragment(): string
     {
-        $start = ($this->line - ($this->fileFragmentOffset + 1));
-        $start = ($start < 0 ? 0 : $start);
+        $string = "";
+        $fileIterator = new \LimitIterator(
+            new \SplFileObject($this->file),
+            $this->getBegin(),
+            $this->getEnd()
+        );
+        foreach ($fileIterator as $line) {
+            $string .= $line;
+        }
+        return $string;
+    }
 
-        $offset = (2*($this->fileFragmentOffset + 1) - 1);
+    /**
+     * @return integer
+     */
+    private function getBegin(): int
+    {
+        $begin = $this->line - $this->offset;
+        return $begin < 0 ? 0 : $begin;
+    }
 
-        $fragment = array_slice($this->fileArray, $start, $offset);
-        $fragment = htmlspecialchars(implode('', $fragment));
-
-        return str_replace("\n", "&nbsp;\n", $fragment);
+    /**
+     * @return intger
+     */
+    private function getEnd(): int
+    {
+        return $this->line + $this->offset;
     }
 }
