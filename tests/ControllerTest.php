@@ -84,6 +84,8 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testCallDestructor()
     {
+        // Add eror to errorArray
+        MockTest::injectStatic($this->_controller, 'errorArray', ['AnyError']);
         MockTest::inject(
             $this->_controller,
             '_logFile',
