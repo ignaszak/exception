@@ -97,7 +97,8 @@ EOT;
         foreach ($fileIterator as $line) {
             $string .= $line;
         }
-        return $string;
+        $string = htmlspecialchars($string);
+        return str_replace("\n", "&nbsp;\n", $string);
     }
 
     /**
