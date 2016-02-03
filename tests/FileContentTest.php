@@ -90,14 +90,4 @@ Error
             MockTest::callMockMethod($this->_fileContent, 'getBegin')
         );
     }
-
-    public function testGetEnd()
-    {
-        MockTest::inject($this->_fileContent, 'offset', 8);
-        MockTest::inject($this->_fileContent, 'line', 33);
-        $this->assertEquals(
-            41,
-            MockTest::callMockMethod($this->_fileContent, 'getEnd')
-        );
-    }
 }

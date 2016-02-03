@@ -108,12 +108,4 @@ EOT;
         $begin = $this->line - $this->offset;
         return $begin < 0 ? 0 : $begin;
     }
-
-    /**
-     * @return intger
-     */
-    private function getEnd(): int
-    {
-        return $this->line + $this->offset;
-    }
 }
