@@ -33,7 +33,7 @@ Line5";
         );
         $this->assertEquals("Line3
 Error
-Line5", $fileFragment);
+", $fileFragment);
     }
 
     public function testGetFileContentWithNoEsistingFile()

@@ -92,7 +92,7 @@ EOT;
         $fileIterator = new \LimitIterator(
             new \SplFileObject($this->file),
             $this->getBegin(),
-            $this->getEnd()
+            $this->offset*2
         );
         foreach ($fileIterator as $line) {
             $string .= $line;
