@@ -31,8 +31,8 @@ Line5";
             $this->_fileContent,
             'getFileFragment'
         );
-        $this->assertEquals("Line3
-Error
+        $this->assertEquals("Line3&nbsp;
+Error&nbsp;
 ", $fileFragment);
     }
 

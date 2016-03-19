@@ -16,6 +16,11 @@ class DisplayTest extends \PHPUnit_Framework_TestCase
         $this->display = new Display;
     }
 
+    public function testLoadDisplay()
+    {
+
+    }
+
     /**
      * @runInSeparateProcess
      */

@@ -42,6 +42,9 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetErrorTypeByNumber()
     {
+        $this->assertEmpty(
+            $this->getErrorTypeByNumber(0)
+        );
         $this->assertEquals(
             'Fatal error',
             $this->getErrorTypeByNumber(E_ERROR)
@@ -69,6 +72,10 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             'Compile error',
             $this->getErrorTypeByNumber(E_COMPILE_ERROR)
+        );
+        $this->assertEquals(
+            'Compile warning',
+            $this->getErrorTypeByNumber(E_COMPILE_WARNING)
         );
         $this->assertEquals(
             'User error',

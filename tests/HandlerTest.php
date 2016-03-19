@@ -19,13 +19,20 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(!empty($getTrace[1]));
     }
 
-    public function testGetFunctionArgs()
+    public function testGetFunctionArgsInArray()
     {
         $args = array(
             1, 'string', new \Exception('test')
         );
         $getFunctionArgs = Mock\MockTest::callMockMethod($this->_handler, 'getFunctionArgs', array($args));
         $this->assertEquals("1, 'string', (object) Exception", $getFunctionArgs);
+    }
+
+    public function testGetFunctionArgsInString()
+    {
+        $args = 'anyArg';
+        $getFunctionArgs = Mock\MockTest::callMockMethod($this->_handler, 'getFunctionArgs', array($args));
+        $this->assertEquals("'anyArg'", $getFunctionArgs);
     }
 
     public function testCutString()
