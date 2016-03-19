@@ -2,11 +2,10 @@
 /**
  * phpDocumentor
  *
- * PHP Version 5.5
+ * PHP Version 7.0
  *
  * @copyright 2015 Tomasz Ignaszak
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
- * @link      http://phpdoc.org
  */
 
 namespace Ignaszak\Exception\Modules;
@@ -17,13 +16,13 @@ use Ignaszak\Exception\Controller\IController;
 /**
  *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
- * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Module/Display.php
  *
  */
 class Display
 {
 
     /**
+     *
      * @var string
      */
     private $baseDir;
@@ -34,6 +33,7 @@ class Display
     }
 
     /**
+     *
      * @param string $display
      */
     public function loadDisplay(string $display)
@@ -56,6 +56,20 @@ class Display
     }
 
     /**
+     *
+     * @param string $file
+     */
+    private function load(string $file)
+    {
+        $file = "{$this->baseDir}{$file}";
+        if (file_exists($file) && is_readable($file)) {
+            include($file);
+        }
+    }
+
+    /**
+     * Method used in theme
+     *
      * @return array
      */
     private function getErrorArray(): array
@@ -64,6 +78,8 @@ class Display
     }
 
     /**
+     * Method used in theme
+     *
      * @return string
      */
     private function getServerData(): string
@@ -80,6 +96,8 @@ class Display
     }
 
     /**
+     * Method used in theme
+     *
      * @return string
      */
     private function getUserMessage(): string
@@ -88,28 +106,20 @@ class Display
     }
 
     /**
-     * @param string $file
+     * Method used in theme
+     *
+     * @param string $inf
+     * @return string
      */
-    private function load(string $file)
-    {
-        $file = "{$this->baseDir}{$file}";
-        if (file_exists($file) && is_readable($file)) {
-            include($file);
-        }
-    }
-
     private function getInf(string $inf): string
     {
         switch ($inf) {
             case 'time':
                 return date('G:i:s', time());
-            break;
             case 'path':
                 return Conf::get('logFileDir');
-            break;
             case 'log':
                 return Conf::get('createLogFile') ? 'yes' : 'no';
-            break;
         }
     }
 }
