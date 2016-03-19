@@ -168,7 +168,8 @@ class Controller extends IController
         );
         $renameArray = array();
 
-        for ($i=0; $i<count($array); ++$i) {
+        $count = count($array);
+        for ($i = 0; $i < $count; ++ $i) {
             $renameArray[ $arrayKeyPattern[$i] ] = $array[$i];
         }
 
