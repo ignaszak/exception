@@ -65,22 +65,16 @@ class Variable
             case "double":
             case "NULL":
                 return "{$value}";
-                break;
             case "string":
                 return $stringQuotation . $value . $stringQuotation;
-                break;
             case "array":
                 return print_r($value, true);
-                break;
             case "object":
                 return "($valueType) " . get_class($value);
-                break;
             case "resource":
                 return "($valueType) " . get_resource_type($value);
-                break;
             case "unknown type":
                 return $valueType;
-                break;
             default:
                 return $valueType;
         }
