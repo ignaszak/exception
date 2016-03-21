@@ -144,7 +144,7 @@ class Controller extends IController
      */
     private function isErrorNotSuppressed(array $error): bool
     {
-        return $error[0];
+        return $error[0] ? true : false;
     }
 
     /**
@@ -189,6 +189,6 @@ class Controller extends IController
                 ++$i;
             }
         }
-        return $i;
+        return $i ? true : false;
     }
 }

@@ -95,7 +95,7 @@ class Variable
         $value = strip_tags($value);
 
         if ($key == 'REQUEST_TIME_FLOAT' || $key == 'REQUEST_TIME') {
-            $value = "$value (" . date("c", $value) . ")";
+            $value = "$value (" . date("c", (int)$value) . ")";
         }
 
         return $value;
