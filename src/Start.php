@@ -93,6 +93,8 @@ class Start
 
     private function setObStart()
     {
-        ob_start();
+        if (@TEST_MODE !== true) {
+            ob_start();
+        }
     }
 }

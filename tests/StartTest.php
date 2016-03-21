@@ -55,8 +55,14 @@ class StartTest extends \PHPUnit_Framework_TestCase
         $this->start->catchException(new \Exception('Any Exception'));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testRunOnDevAndUserMode()
     {
+        if (!defined('TEST_MODE')) {
+            define('TEST_MODE', true);
+        }
         $stub = $this->getMockBuilder('Ignaszak\Exception\Handler\ErrorHandler')
             ->getMock();
         $stub->expects($this->once())->method('setErrorHandler');
