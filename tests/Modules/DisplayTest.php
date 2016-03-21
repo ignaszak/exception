@@ -1,5 +1,5 @@
 <?php
-namespace Test;
+namespace Test\Modules;
 
 use Ignaszak\Exception\Conf;
 use Ignaszak\Exception\Modules\Display;
@@ -118,7 +118,7 @@ class DisplayTest extends \PHPUnit_Framework_TestCase
         $file = MockTest::mockFile(
             'AnyThemeFile.php',
             0777,
-            '<?php new \Test\TestLoadCount; ?>'
+            '<?php new \Test\Modules\TestLoadCount; ?>'
         );
         MockTest::callMockMethod($this->display, 'load', array($file));
         $this->assertEquals(0, TestLoadCount::$count);
@@ -130,7 +130,7 @@ class DisplayTest extends \PHPUnit_Framework_TestCase
         $file = MockTest::mockFile(
             'AnyThemeFile.php',
             0777,
-            '<?php new \Test\TestLoadCount; ?>'
+            '<?php new \Test\Modules\TestLoadCount; ?>'
         );
         MockTest::callMockMethod($this->display, 'load', array($file));
         $this->assertEquals(1, TestLoadCount::$count);

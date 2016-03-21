@@ -1,5 +1,5 @@
 <?php
-namespace Test;
+namespace Test\Handler;
 
 use Ignaszak\Exception\Handler\ErrorHandler;
 use Ignaszak\Exception\Controller\IController;
@@ -119,7 +119,7 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
 
     private function getErrorTypeByNumber(int $errorType): string
     {
-        return Mock\MockTest::callMockMethod(
+        return MockTest::callMockMethod(
             $this->_errorHandler,
             'getErrorTypeByNumber',
             array($errorType)

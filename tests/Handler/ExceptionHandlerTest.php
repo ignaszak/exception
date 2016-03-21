@@ -1,5 +1,5 @@
 <?php
-namespace Test;
+namespace Test\Handler;
 
 use Ignaszak\Exception\Handler\ExceptionHandler;
 use Ignaszak\Exception\Controller\IController;

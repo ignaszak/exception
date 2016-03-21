@@ -1,5 +1,5 @@
 <?php
-namespace Test;
+namespace Test\Controller;
 
 use Ignaszak\Exception\Controller\Controller;
 use Test\Mock\MockTest;
@@ -49,18 +49,18 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
             'code'     => 8
         );
         $args = array(1,2,3,4,5,6,7,8);
-        $renameArrayKeys = Mock\MockTest::callMockMethod($this->_controller, 'renameArrayKeys', array($args));
+        $renameArrayKeys = MockTest::callMockMethod($this->_controller, 'renameArrayKeys', array($args));
         $this->assertEquals($array, $renameArrayKeys);
     }
 
     public function testIsArrayNotEmpty()
     {
         $args = array('','',1,'');
-        $isArrayNotEmpty = Mock\MockTest::callMockMethod($this->_controller, 'isArrayNotEmpty', array($args));
+        $isArrayNotEmpty = MockTest::callMockMethod($this->_controller, 'isArrayNotEmpty', array($args));
         $this->assertEquals(1, $isArrayNotEmpty);
 
         $args = array('','',0,'');
-        $isArrayNotEmpty = Mock\MockTest::callMockMethod($this->_controller, 'isArrayNotEmpty', array($args));
+        $isArrayNotEmpty = MockTest::callMockMethod($this->_controller, 'isArrayNotEmpty', array($args));
         $this->assertEquals(0, $isArrayNotEmpty);
     }
 

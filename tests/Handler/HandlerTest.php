@@ -1,5 +1,7 @@
 <?php
-namespace Test;
+namespace Test\Handler;
+
+use Test\Mock\MockTest;
 
 class HandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,7 +16,7 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetTrace()
     {
-        $getTrace = Mock\MockTest::callMockMethod($this->_handler, 'getTrace');
+        $getTrace = MockTest::callMockMethod($this->_handler, 'getTrace');
         $this->assertTrue(!empty($getTrace[1]));
     }
 
@@ -23,25 +25,25 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
         $args = array(
             1, 'string', new \Exception('test')
         );
-        $getFunctionArgs = Mock\MockTest::callMockMethod($this->_handler, 'getFunctionArgs', array($args));
+        $getFunctionArgs = MockTest::callMockMethod($this->_handler, 'getFunctionArgs', array($args));
         $this->assertEquals("1, 'string', (object) Exception", $getFunctionArgs);
     }
 
     public function testGetFunctionArgsInString()
     {
         $args = 'anyArg';
-        $getFunctionArgs = Mock\MockTest::callMockMethod($this->_handler, 'getFunctionArgs', array($args));
+        $getFunctionArgs = MockTest::callMockMethod($this->_handler, 'getFunctionArgs', array($args));
         $this->assertEquals("'anyArg'", $getFunctionArgs);
     }
 
     public function testCutString()
     {
         $string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultrices enim turpis, in auctor massa dictum sit amet. In hac habitasse platea dictumst.";
-        $cutString = Mock\MockTest::callMockMethod($this->_handler, 'cutString', array($string));
+        $cutString = MockTest::callMockMethod($this->_handler, 'cutString', array($string));
         $this->assertEquals("Lorem ipsum dolor sit amet, consectetur ...", $cutString);
 
         $string = "Lorem ipsum dolor sit amet, consectetur";
-        $cutString = Mock\MockTest::callMockMethod($this->_handler, 'cutString', array($string));
+        $cutString = MockTest::callMockMethod($this->_handler, 'cutString', array($string));
         $this->assertEquals("Lorem ipsum dolor sit amet, consectetur", $cutString);
     }
 }

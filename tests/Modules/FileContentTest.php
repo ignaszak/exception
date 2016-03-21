@@ -1,5 +1,5 @@
 <?php
-namespace Test;
+namespace Test\Modules;
 
 use Ignaszak\Exception\Modules\FileContent;
 use Test\Mock\MockTest;
