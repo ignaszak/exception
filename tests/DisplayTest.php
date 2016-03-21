@@ -1,5 +1,4 @@
 <?php
-
 namespace Test;
 
 use Ignaszak\Exception\Conf;
@@ -16,9 +15,31 @@ class DisplayTest extends \PHPUnit_Framework_TestCase
         $this->display = new Display;
     }
 
+    /**
+     * @expectedException \Exception
+     */
     public function testLoadDisplay()
     {
+        MockTest::inject($this->display, 'baseDir');
+        MockTest::mockConf('display', 'anyFile');
+        $file = MockTest::mockFile(
+            'anyFile.php',
+            0644,
+            '<?php throw new \Exception(); ?>'
+        );
+        $this->display->loadDisplay($file);
+    }
 
+    public function testDisableLoadDisplay()
+    {
+        MockTest::inject($this->display, 'baseDir');
+        MockTest::mockConf('display', '');
+        $file = MockTest::mockFile(
+            'anyFile.php',
+            0644,
+            '<?php throw new \Exception(); ?>'
+        );
+        $this->display->loadDisplay($file);
     }
 
     /**

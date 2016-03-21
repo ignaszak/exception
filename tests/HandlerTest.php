@@ -1,5 +1,4 @@
 <?php
-
 namespace Test;
 
 class HandlerTest extends \PHPUnit_Framework_TestCase

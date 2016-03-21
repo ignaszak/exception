@@ -1,5 +1,4 @@
 <?php
-
 namespace Test;
 
 use Ignaszak\Exception\Handler\ExceptionHandler;

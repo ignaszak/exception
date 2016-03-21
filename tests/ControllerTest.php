@@ -1,5 +1,4 @@
 <?php
-
 namespace Test;
 
 use Ignaszak\Exception\Controller\Controller;
@@ -12,6 +11,7 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        MockTest::inject(Controller::instance(), '_controller');
         $this->_controller = Controller::instance();
     }
 
