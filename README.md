@@ -1,5 +1,7 @@
 # ignaszak/exception
 
+[![Build Status](https://travis-ci.org/ignaszak/php-exception.svg?branch=master)](https://travis-ci.org/ignaszak/php-exception) [![Coverage Status](https://coveralls.io/repos/github/ignaszak/php-exception/badge.svg?branch=master)](https://coveralls.io/github/ignaszak/php-exception?branch=master)
+
 This package provides error handler interface
 
 ![Screnshot](screenshot1.jpg)
