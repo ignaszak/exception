@@ -105,10 +105,6 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
             'User deprecated error',
             $this->getErrorTypeByNumber(E_USER_DEPRECATED)
         );
-        $this->assertEquals(
-            'Recoverable error',
-            $this->getErrorTypeByNumber(E_RECOVERABLE_ERROR)
-        );
         $this->assertRegExp(
             '/Unknown error \([0-9]*\)/',
             $this->getErrorTypeByNumber(722956451465)

@@ -109,8 +109,6 @@ class ErrorHandler extends Handler
                 return "Deprecated error";
             case E_USER_DEPRECATED:
                 return "User deprecated error";
-            case E_RECOVERABLE_ERROR:
-                return "Recoverable error";
             default:
                 return "Unknown error ($errorNumber)";
         }
