@@ -7,6 +7,7 @@
  * @copyright 2015 Tomasz Ignaszak
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
  */
+declare(strict_types=1);
 
 namespace Ignaszak\Exception\Modules;
 
@@ -38,8 +39,9 @@ class Display
      */
     public function loadDisplay(string $display)
     {
-        if (Conf::get('display') == $display && $display != 'location') {
-            $this->load("/{$display}.html");
+        $conf = Conf::get('display');
+        if (@strpos($display, $conf) !== false && $display != 'location') {
+            $this->load($display);
         }
     }
 
@@ -61,7 +63,7 @@ class Display
      */
     private function load(string $file)
     {
-        $file = "{$this->baseDir}{$file}";
+        $file = $this->baseDir . $file;
         if (file_exists($file) && is_readable($file)) {
             include($file);
         }

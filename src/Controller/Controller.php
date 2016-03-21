@@ -2,12 +2,12 @@
 /**
  * phpDocumentor
  *
- * PHP Version 5.5
+ * PHP Version 7.0
  *
  * @copyright 2015 Tomasz Ignaszak
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
- * @link      http://phpdoc.org
  */
+declare(strict_types=1);
 
 namespace Ignaszak\Exception\Controller;
 
@@ -18,7 +18,6 @@ use Ignaszak\Exception\Modules\LogFile;
 /**
  *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
- * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Controller.php
  *
  */
 class Controller extends IController
@@ -60,7 +59,7 @@ class Controller extends IController
      */
     private static $count = 0;
 
-    public function __construct()
+    private function __construct()
     {
         $this->_display = new Display;
         $this->_logFile = new LogFile;
@@ -103,10 +102,10 @@ class Controller extends IController
             $this->cleanBuffer();
 
             $this->_logFile->createLogFile();
-            $this->_display->loadDisplay('dev');
+            $this->_display->loadDisplay('dev.html');
 
             if ($this->isUserReporting()) {
-                $this->_display->loadDisplay('user');
+                $this->_display->loadDisplay('user.html');
                 $this->_display->loadLocation();
             }
 

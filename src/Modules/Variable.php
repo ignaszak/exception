@@ -2,19 +2,18 @@
 /**
  * phpDocumentor
  *
- * PHP Version 5.5
+ * PHP Version 7.0
  *
  * @copyright 2015 Tomasz Ignaszak
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
- * @link      http://phpdoc.org
  */
+declare(strict_types=1);
 
 namespace Ignaszak\Exception\Modules;
 
 /**
  *
  * @author Tomasz Ignaszak <tomek.ignaszak@gmail.com>
- * @link https://github.com/ignaszak/exception/blob/master/src/Handler/Module/Variable.php
  *
  */
 class Variable
@@ -55,12 +54,15 @@ class Variable
      * @param mixed $value
      * @param string $stringQuotation
      */
-    public static function formatVariableType($value, string $stringQuotation = ''): string
-    {
+    public static function formatVariableType(
+        $value,
+        string $stringQuotation = ''
+    ): string {
         $valueType = gettype($value);
 
         switch ($valueType) {
             case "boolean":
+                return $value ? 'true' : 'false';
             case "integer":
             case "double":
             case "NULL":
@@ -75,8 +77,6 @@ class Variable
                 return "($valueType) " . get_resource_type($value);
             case "unknown type":
                 return $valueType;
-            default:
-                return $valueType;
         }
     }
 
@@ -87,8 +87,10 @@ class Variable
      * @param string $key
      * @return string
      */
-    private static function formatServerDataValue(string $value, string $key): string
-    {
+    private static function formatServerDataValue(
+        string $value,
+        string $key
+    ): string {
         $value = str_replace("\n", "", $value);
         $value = strip_tags($value);
 
@@ -96,7 +98,7 @@ class Variable
             $value = "$value (" . date("c", $value) . ")";
         }
 
-            return $value;
+        return $value;
     }
 
     /**
