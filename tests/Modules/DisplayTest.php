@@ -47,7 +47,9 @@ class DisplayTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadLocation()
     {
-        define('TEST_MODE', true);
+        if (!defined('TEST_MODE')) {
+            define('TEST_MODE', true);
+        }
         $location = 'http://example.com';
 
         $_conf = Conf::instance();
