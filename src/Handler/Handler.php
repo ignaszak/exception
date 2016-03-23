@@ -69,7 +69,9 @@ abstract class Handler
             $function = $this->getBacktraceFromKey($backtrace[$i], 'function');
             $class = $this->getBacktraceFromKey($backtrace[$i], 'class');
             $type = $this->getBacktraceFromKey($backtrace[$i], 'type');
-            $args = $this->getFunctionArgs($this->getBacktraceFromKey($backtrace[$i], 'args'));
+            $args = $this->getFunctionArgs(
+                $this->getBacktraceFromKey($backtrace[$i], 'args')
+            );
 
             if ($file != '' && $line != '') {
                 $array[$j]['message'] = sprintf(
@@ -106,17 +108,15 @@ abstract class Handler
             $args = array($args);
         }
         $array = array();
-
         foreach ($args as $value) {
             $array[] = Variable::formatVariableType(@$value, "'");
         }
-
-        $stringArgs = implode(', ', $array);
-        return $stringArgs;
+        return implode(', ', $array);
     }
 
     /**
-     * Checks if passed key exists in backtrace array and returns defined array element
+     * Checks if passed key exists in backtrace array
+     * and returns defined array element
      * (for backtrace['args') returns array)
      *
      * @param array $backtrace
@@ -135,6 +135,7 @@ abstract class Handler
     private function cutString(string $string): string
     {
         $length = 40;
-        return substr($string, 0, $length) . (strlen($string) > $length ? "..." : "");
+        return substr($string, 0, $length) .
+            (strlen($string) > $length ? "..." : "");
     }
 }
