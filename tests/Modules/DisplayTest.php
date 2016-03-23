@@ -113,6 +113,7 @@ class DisplayTest extends \PHPUnit_Framework_TestCase
             'yes',
             $this->getInf('log')
         );
+        $this->assertEmpty($this->getInf('noMatched'));
     }
 
     public function testDontLoadFile()
