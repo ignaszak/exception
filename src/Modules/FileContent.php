@@ -34,13 +34,6 @@ class FileContent
     private $line;
 
     /**
-     * Stores result of file() function
-     *
-     * @var array
-     */
-    private $fileArray = array();
-
-    /**
      * Stores defined offest (default 10)
      *
      * @var integer
@@ -76,7 +69,7 @@ class FileContent
         $fileType = pathinfo($this->file, PATHINFO_EXTENSION);
         $firstLine = $this->getBegin() + 1;
         return <<<EOT
-<pre class="brush: $fileType; first-line: {$firstLine}; highlight: {$this->line};">
+<pre class="brush: {$fileType}; first-line: {$firstLine}; highlight: {$this->line};">
 {$this->getFileFragment()}
 </pre>
 EOT;
