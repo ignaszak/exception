@@ -128,11 +128,7 @@ class Controller extends IController
      */
     private function isUserReporting(): bool
     {
-        if (self::$reportedErrorCode & Conf::get('userReporting')) {
-            return true;
-        } else {
-            return false;
-        }
+        return (bool)(self::$reportedErrorCode & Conf::get('userReporting'));
     }
 
     /**
@@ -144,7 +140,7 @@ class Controller extends IController
      */
     private function isErrorNotSuppressed(array $error): bool
     {
-        return $error[0] ? true : false;
+        return (bool)$error[0];
     }
 
     /**
