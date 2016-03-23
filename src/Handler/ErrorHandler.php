@@ -21,24 +21,30 @@ class ErrorHandler extends Handler
 {
 
     /**
-     * Calls set_error_handler function and passes created error array to controller
+     * Calls set_error_handler function and passes created
+     * error array to controller
      */
     public function setErrorHandler()
     {
-        set_error_handler(function ($errorNumber, $errorMessage, $errorFile, $errorLine) {
+        set_error_handler(
+            function ($errorNumber, $errorMessage, $errorFile, $errorLine) {
 
-            parent::$_controller->catchErrorAndHandle(array(
-                $this->getErrorTypeByNumber($errorNumber),
-                $errorMessage,
-                $errorFile,
-                $errorLine,
-                parent::$_fileContent->getFileContent($errorFile, $errorLine),
-                $this->getTrace()
-            ));
+                parent::$_controller->catchErrorAndHandle(array(
+                    $this->getErrorTypeByNumber($errorNumber),
+                    $errorMessage,
+                    $errorFile,
+                    $errorLine,
+                    parent::$_fileContent->getFileContent(
+                        $errorFile,
+                        $errorLine
+                    ),
+                    $this->getTrace()
+                ));
 
-            parent::$_controller->addReportedErrorCode($errorNumber);
+                parent::$_controller->addReportedErrorCode($errorNumber);
 
-        });
+            }
+        );
     }
 
     /**
@@ -51,13 +57,17 @@ class ErrorHandler extends Handler
 
             $lastError = error_get_last();
 
-            if (count($lastError)) { // If not empty
+            if (count($lastError)) {
+                // If not empty
                 parent::$_controller->catchErrorAndHandle(array(
                     $this->getErrorTypeByNumber($lastError['type']),
                     $lastError['message'],
                     $lastError['file'],
                     $lastError['line'],
-                    parent::$_fileContent->getFileContent($lastError['file'], $lastError['line']),
+                    parent::$_fileContent->getFileContent(
+                        $lastError['file'],
+                        $lastError['line']
+                    ),
                     $this->getTrace()
                 ));
 
