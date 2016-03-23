@@ -122,6 +122,8 @@ class Display
                 return Conf::get('logFileDir');
             case 'log':
                 return Conf::get('createLogFile') ? 'yes' : 'no';
+            default:
+                return '';
         }
     }
 }
